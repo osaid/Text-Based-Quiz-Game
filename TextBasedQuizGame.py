@@ -1,3 +1,16 @@
+def play_again_options():
+    while True:
+        print("Do you want to play again?")
+        playAgainOptions = input("Y or N: ").strip().upper()
+        if playAgainOptions == "Y":
+            return True   # CHANGED: return to caller instead of calling welcomescreen()
+        elif playAgainOptions == "N":
+            print("Thanks for playing!")
+            return False  # CHANGED: signal caller to stop
+        else:
+            print("Invalid input. Please enter Y or N.")
+
+
 def easy_questions_answers():
     questions = [
         {
@@ -41,14 +54,8 @@ def easy_questions_answers():
             print(f"{currentScore} / 5")
     print(
         f"Your final score:{currentScore}/5 | Final score percentage {(currentScore/5)*100}% \n")
-    while True:
-        print("Do you want to play again?")
-        playAgainOptions = input("Y or N").upper()
-        if playAgainOptions == "Y":
-            welcomescreen()
-        else:
-            print("Thanks for playing!")
-            break
+
+    return play_again_options()  # CHANGED: return the user's choice to the caller
 
 
 def medium_questions_answers():
@@ -95,14 +102,8 @@ def medium_questions_answers():
             print(f"{currentScore} / 5")
     print(
         f"Your final score:{currentScore}/5 | Final score percentage {(currentScore/5)*100}% \n")
-    while True:
-        print("Do you want to play again?")
-        playAgainOptions = input("Y or N").upper()
-        if playAgainOptions == "Y":
-            welcomescreen()
-        else:
-            print("Thanks for playing!")
-            break
+
+    return play_again_options()  # CHANGED
 
 
 def hard_questions_answers():
@@ -150,6 +151,8 @@ def hard_questions_answers():
     print(
         f"Your final score:{currentScore}/5 | Final score percentage {(currentScore/5)*100}% \n")
 
+    return play_again_options()  # CHANGED
+
 
 def welcomescreen():
     print("Welcome to the Text-Based Quiz Game!")
@@ -159,21 +162,22 @@ def welcomescreen():
     print("Let's get started!")
     print("Please select the difficulty level:")
 
-    def difficult_options():
+    while True:  # CHANGED: single loop controls replay
+        # CHANGED: ask each round
         difficultOptions = int(input("1. Easy 2. Medium 3. Hard \n"))
-        while True:
-            if difficultOptions == 1:
-                easy_questions_answers()
-            elif difficultOptions == 2:
-                medium_questions_answers()
-            elif difficultOptions == 3:
-                hard_questions_answers()
-            else:
-                print("Invalid Option")
-                difficult_options()
-    difficult_options()
+
+        if difficultOptions == 1:
+            keep_playing = easy_questions_answers()
+        elif difficultOptions == 2:
+            keep_playing = medium_questions_answers()
+        elif difficultOptions == 3:
+            keep_playing = hard_questions_answers()
+        else:
+            print("Invalid Option")
+            continue  # CHANGED: re-prompt difficulty
+
+        if not keep_playing:  # CHANGED: stop if user chose N
+            break
 
 
 welcomescreen()
-
-# add/fix replay function to welcomescreen
