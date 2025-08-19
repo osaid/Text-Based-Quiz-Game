@@ -40,6 +40,7 @@ def easy_questions_answers():
         }
     ]
     currentScore = 0
+    currentHealth = 3
     for q in questions:
         print(q["question"])
         for option in q["options"]:
@@ -51,7 +52,12 @@ def easy_questions_answers():
             print(f"{currentScore} / 5")
         else:
             print("Incorrect..")
-            print(f"{currentScore} / 5")
+            currentHealth -= 1
+            print(f"Current Score: {currentScore} / 5")
+            print(f"Health: {currentHealth} / 3")
+            if currentHealth <= 0:
+                print("Game Over!")
+                return welcomescreen()
     print(
         f"Your final score:{currentScore}/5 | Final score percentage {(currentScore/5)*100}% \n")
 
@@ -88,6 +94,7 @@ def medium_questions_answers():
     ]
 
     currentScore = 0
+    currentHealth = 3
     for q in questions:
         print(q["question"])
         for option in q["options"]:
@@ -99,7 +106,12 @@ def medium_questions_answers():
             print(f"{currentScore} / 5")
         else:
             print("Incorrect..")
-            print(f"{currentScore} / 5")
+            currentHealth -= 1
+            print(f"Current Score: {currentScore} / 5")
+            print(f"Health: {currentHealth} / 3")
+            if currentHealth <= 0:
+                print("Game Over!")
+                return welcomescreen()
     print(
         f"Your final score:{currentScore}/5 | Final score percentage {(currentScore/5)*100}% \n")
 
@@ -136,6 +148,7 @@ def hard_questions_answers():
     ]
 
     currentScore = 0
+    currentHealth = 3
     for q in questions:
         print(q["question"])
         for option in q["options"]:
@@ -144,10 +157,15 @@ def hard_questions_answers():
         if user_choice.upper() == q["answer"]:
             print("Correct!")
             currentScore += 1
-            print(f"{currentScore} / 5")
+            print(f"Current Score: {currentScore} / 5")
         else:
             print("Incorrect..")
+            currentHealth -= 1
             print(f"{currentScore} / 5")
+            print(f"Health: {currentHealth} / 3")
+            if currentHealth <= 0:
+                print("Game Over!")
+                return welcomescreen()
     print(
         f"Your final score:{currentScore}/5 | Final score percentage {(currentScore/5)*100}% \n")
 
