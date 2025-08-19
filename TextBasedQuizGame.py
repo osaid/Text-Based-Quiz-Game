@@ -1,3 +1,6 @@
+import random
+
+
 def play_again_options():
     while True:
         print("Do you want to play again?")
@@ -39,6 +42,9 @@ def easy_questions_answers():
             "answer": "A"
         }
     ]
+
+    random.shuffle(questions)
+
     currentScore = 0
     currentHealth = 3
     for q in questions:
@@ -93,6 +99,8 @@ def medium_questions_answers():
         }
     ]
 
+    random.shuffle(questions)
+
     currentScore = 0
     currentHealth = 3
     for q in questions:
@@ -146,6 +154,8 @@ def hard_questions_answers():
             "answer": "A"
         }
     ]
+
+    random.shuffle(questions)
 
     currentScore = 0
     currentHealth = 3
